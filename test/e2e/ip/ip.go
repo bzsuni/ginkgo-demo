@@ -1,23 +1,24 @@
 package ip
 
 import (
-	"ci-demo/test/e2e/framework"
 	"encoding/json"
 	"fmt"
+	"net"
+	"strings"
+	"whereabouts-demo/test/e2e/framework"
+
 	nettypes "github.com/k8snetworkplumbingwg/network-attachment-definition-client/pkg/apis/k8s.cni.cncf.io/v1"
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
-	"net"
-	"strings"
 )
 
 const (
 	testNetworkName = "net-macvlan"
 	testNamespace   = "default"
 	testPodName     = "test-pod"
-	testImg         = "centos"
+	testImg         = "alpine"
 	testIPv4Range   = "192.210.0.0/16"
 )
 

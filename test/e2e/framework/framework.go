@@ -6,6 +6,9 @@ package framework
 import (
 	"context"
 	"fmt"
+	"os"
+	"time"
+
 	nettypes "github.com/k8snetworkplumbingwg/network-attachment-definition-client/pkg/apis/k8s.cni.cncf.io/v1"
 	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -13,8 +16,6 @@ import (
 	"k8s.io/client-go/rest"
 	"k8s.io/client-go/tools/clientcmd"
 	"k8s.io/klog/v2"
-	"os"
-	"time"
 
 	netclient "github.com/k8snetworkplumbingwg/network-attachment-definition-client/pkg/client/clientset/versioned/typed/k8s.cni.cncf.io/v1"
 )
@@ -119,5 +120,5 @@ func podObject(podNamespace, podName, image string, label, annotations map[strin
 }
 
 func containerCmd() []string {
-	return []string{"/bin/bash", "-c", "trap : TERM INT; sleep infinity & wait"}
+	return []string{"/bin/sh", "-c", "trap : TERM INT; sleep infinity & wait"}
 }
