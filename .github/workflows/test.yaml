@@ -10,7 +10,7 @@ jobs:
   test:
     runs-on: self-hosted
     env:
-      NUMBER_OF_COMPUTE_NODES: 3
+      NUMBER_OF_COMPUTE_NODES: 2
     steps: 
       - name: checkout code
         uses: actions/checkout@v2.3.4
@@ -30,8 +30,6 @@ jobs:
           echo -e "\033[35m workspace path is `pwd` \033[0m"
       - name: install basic environment tool
         run: sudo chmod +x ./test/hack/install-basic-environment-tool.sh && ./test/hack/install-basic-environment-tool.sh
-      - name: install kind and kubectl
-        run: sudo chmod +x ./test/hack/install-test-tool.sh && source ./test/hack/install-test-tool.sh
       - name: setup kind cluster
         run: sudo chmod +x ./test/hack/setup-kind-cluster.sh && ./test/hack/setup-kind-cluster.sh --number-of-compute $NUMBER_OF_COMPUTE_NODES
       - name: Execute golang based E2E tests
